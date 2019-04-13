@@ -38,6 +38,7 @@ Laravel already makes it easy to perform authentication via traditional login fo
 
 > {note} This documentation assumes you are already familiar with OAuth2. If you do not know anything about OAuth2, consider familiarizing yourself with the general terminology and features of OAuth2 before continuing.
 
+中文版可以参考 https://laravelacademy.org/post/8298.html
 <a name="installation"></a>
 ## Installation
 
@@ -48,6 +49,8 @@ To get started, install Passport via the Composer package manager:
 The Passport service provider registers its own database migration directory with the framework, so you should migrate your database after registering the provider. The Passport migrations will create the tables your application needs to store clients and access tokens:
 
     php artisan migrate
+
+>执行这句话会出现: Key path "路径\oath-private.key" does not exist or is not readable.解决此问题：网上建议,执行`php artisan passport:keys` 测试后，还是会出此提示，最后解决的办法用：openssl 生成公钥和私钥，然后复制到/storage/下面。命名oauth-private.key和oauth-public.key
 
 Next, you should run the `passport:install` command. This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
 
