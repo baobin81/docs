@@ -153,11 +153,16 @@ The published components will be placed in your `resources/js/components` direct
         require('./components/passport/PersonalAccessTokens.vue')
     );
 
-After registering the components, make sure to run `npm run dev` to recompile your assets. Once you have recompiled your assets, you may drop the components into one of your application's templates to get started creating clients and personal access tokens:
+After registering the components, make sure to run `npm run dev` to recompile your assets. 
+>执行 'npm run dev'会报错，根据提示，把 \esources\js\components\下面的 passpost目录拷贝到 resources\assets\js\components下面就OK了
+
+Once you have recompiled your assets, you may drop the components into one of your application's templates to get started creating clients and personal access tokens:
 
     <passport-clients></passport-clients>
     <passport-authorized-clients></passport-authorized-clients>
     <passport-personal-access-tokens></passport-personal-access-tokens>
+>到这一步，怎么弄，有点不太会了。可能没有用习惯vue,可能需要 vue的基础.有空再研究一下.尝试加到模版中去，提示Failed to mount component: template or render function not defined.found in。到这一步卡克了。怎么办？
+
 
 <a name="deploying-passport"></a>
 ### Deploying Passport
