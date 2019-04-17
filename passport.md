@@ -161,7 +161,7 @@ Once you have recompiled your assets, you may drop the components into one of yo
     <passport-clients></passport-clients>
     <passport-authorized-clients></passport-authorized-clients>
     <passport-personal-access-tokens></passport-personal-access-tokens>
->到这一步，怎么弄，有点不太会了。可能没有用习惯vue,可能需要 vue的基础.有空再研究一下.尝试加到模版中去，提示Failed to mount component: template or render function not defined.found in。到这一步卡克了。怎么办？
+>到这一步，怎么弄，有点不太会了。可能没有用习惯vue,可能需要 vue的基础.有空再研究一下.尝试加到模版中去，提示Failed to mount component: template or render function not defined.found in。 出现这个提示，需要重新创建前端，在项目根目录执行 npm run prod.就不会提了。
 
 
 <a name="deploying-passport"></a>
@@ -467,6 +467,7 @@ The implicit grant is similar to the authorization code grant; however, the toke
 
         Passport::enableImplicitGrant();
     }
+> 在修改文件在`app/Providers/AuthServiceProvider.php`
 
 Once a grant has been enabled, developers may use their client ID to request an access token from your application. The consuming application should make a redirect request to your application's `/oauth/authorize` route like so:
 
@@ -482,6 +483,8 @@ Once a grant has been enabled, developers may use their client ID to request an 
     });
 
 > {tip} Remember, the `/oauth/authorize` route is already defined by the `Passport::routes` method. You do not need to manually define this route.
+
+>试验报错 `"error":"unsupported_grant_type","error_description":"The authorization grant type is not supported by the authorization server."`
 
 <a name="client-credentials-grant-tokens"></a>
 ## Client Credentials Grant Tokens
@@ -505,6 +508,7 @@ Then, attach the middleware to a route:
     Route::get('/orders', function (Request $request) {
         ...
     })->middleware('client');
+>注意中间件的写法middleware('client.credentials'),'client.credentials'=>\Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
 
 To restrict access to the route to specific scopes you may provide a comma-delimited list of the required scopes when attaching the `client` middleware to the route:
 
